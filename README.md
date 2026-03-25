@@ -562,9 +562,8 @@ MIT © [PromptSafe Contributors](https://github.com/chakravarthigit/promptsafe_p
 
 If PromptSafe saved your AI app from an injection attack, please **star this repo** to help others discover it!
 
-## Star History
+[![Star History Chart](https://api.star-history.com/svg?repos=chakravarthigit/promptsafe_package&type=Date)](https://star-history.com/#chakravarthigit/promptsafe_package)
 
-[![Star History Chart](https://api.star-history.com/image?repos=chakravarthigit/promptsafe_package&type=date&legend=top-left)](https://www.star-history.com/?repos=chakravarthigit%2Fpromptsafe_package&type=date&legend=top-left)
 ---
 
 <div align="center">
