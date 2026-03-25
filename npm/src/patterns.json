@@ -1,0 +1,135 @@
+{
+  "version": "1.0.0",
+  "patterns": [
+    {
+      "id": "ignore_instructions",
+      "pattern": "(?i)ignore\\s+(all\\s+)?(previous|prior|above|earlier|your)\\s+(instructions?|prompts?|rules?|constraints?|directives?)",
+      "weight": 35,
+      "category": "instruction_override",
+      "description": "Attempts to override previous instructions"
+    },
+    {
+      "id": "forget_instructions",
+      "pattern": "(?i)(forget|disregard|override|bypass|skip|ignore|delete|remove)\\s+(all\\s+)?(your\\s+)?(previous|prior|system|original|initial)\\s+(instructions?|prompts?|rules?|context|training|settings?|constraints?)",
+      "weight": 35,
+      "category": "instruction_override",
+      "description": "Instructs model to forget system context"
+    },
+    {
+      "id": "reveal_system_prompt",
+      "pattern": "(?i)(reveal|show|print|display|output|repeat|tell\\s+me|give\\s+me|share|expose|leak|dump)\\s+(the\\s+)?(system\\s+prompt|system\\s+message|initial\\s+prompt|base\\s+prompt|hidden\\s+instructions?|your\\s+instructions?|your\\s+rules?|your\\s+context|original\\s+prompt|secret\\s+instructions?)",
+      "weight": 40,
+      "category": "data_exfiltration",
+      "description": "Attempts to extract system prompt"
+    },
+    {
+      "id": "act_as_different",
+      "pattern": "(?i)(you\\s+are|you're|act\\s+as|pretend\\s+(to\\s+be|you're?|you\\s+are)|roleplay\\s+as|imagine\\s+you\\s+are|simulate\\s+being|play\\s+the\\s+role\\s+of|your\\s+new\\s+(name|identity|role)\\s+is)\\s+(now\\s+)?(chatgpt|gpt-?[0-9]?|claude|gemini|llama|a?\\s*different\\s+ai|an?\\s+unrestricted|a?\\s*jailbroken|dan|evil\\s+(ai|bot|assistant)|unrestricted\\s+(ai|bot|assistant))",
+      "weight": 30,
+      "category": "identity_hijack",
+      "description": "Attempts to change model identity"
+    },
+    {
+      "id": "jailbreak",
+      "pattern": "(?i)\\b(jailbreak|jailbroken|dan\\s+mode|do\\s+anything\\s+now|dev(eloper)?\\s+mode|god\\s+mode|unrestricted\\s+mode|no\\s+filter\\s+mode|unfiltered\\s+mode)\\b",
+      "weight": 45,
+      "category": "jailbreak",
+      "description": "Known jailbreak attempt patterns"
+    },
+    {
+      "id": "system_override",
+      "pattern": "(?i)\\b(system\\s+override|override\\s+system|bypass\\s+(restrictions?|filters?|safety|guidelines?|rules?|policies?)|disable\\s+(safety|filters?|restrictions?|guardrails?)|remove\\s+(restrictions?|filters?|safety|limits?)|unlock\\s+(mode|capabilities?|restrictions?))\\b",
+      "weight": 40,
+      "category": "system_override",
+      "description": "Attempts to override system restrictions"
+    },
+    {
+      "id": "prompt_injection",
+      "pattern": "(?i)\\b(prompt\\s+injection|inject(ion)?\\s+(attack|payload|code)|adversarial\\s+prompt)\\b",
+      "weight": 50,
+      "category": "explicit_attack",
+      "description": "Explicit mention of prompt injection"
+    },
+    {
+      "id": "hypothetical_attack",
+      "pattern": "(?i)(hypothetically|in\\s+a\\s+fictional\\s+world|for\\s+a\\s+story|imagine\\s+if|let's\\s+say|suppose|what\\s+if)\\s+.{0,50}(ignore|bypass|reveal|override|jailbreak|system\\s+prompt|no\\s+restrictions?|unrestricted)",
+      "weight": 25,
+      "category": "obfuscated_attack",
+      "description": "Hypothetical framing to bypass restrictions"
+    },
+    {
+      "id": "token_manipulation",
+      "pattern": "(?i)(</?(system|human|assistant|user|ai|prompt|instruction)>|\\[INST\\]|\\[/INST\\]|<s>|</s>|<<SYS>>|<</SYS>>|\\|im_start\\||\\|im_end\\||<\\|endoftext\\|>)",
+      "weight": 45,
+      "category": "token_injection",
+      "description": "Attempts to inject special tokens"
+    },
+    {
+      "id": "repeat_attack",
+      "pattern": "(?i)(repeat\\s+(after\\s+me|the\\s+following|this|everything|verbatim)|echo\\s+(back\\s+)?(this|the\\s+following)|copy\\s+and\\s+paste\\s+(the\\s+following|this|your\\s+instructions?))",
+      "weight": 20,
+      "category": "data_exfiltration",
+      "description": "Repetition-based data extraction"
+    },
+    {
+      "id": "translate_attack",
+      "pattern": "(?i)translate\\s+(the\\s+)?(following|this|your|system|above|previous)\\s+(to|into)\\s+\\w+\\s*:?\\s*(system\\s+prompt|your\\s+instructions?|your\\s+rules?)",
+      "weight": 30,
+      "category": "data_exfiltration",
+      "description": "Translation-based prompt extraction"
+    },
+    {
+      "id": "base64_encoded",
+      "pattern": "(?i)(decode|base64|hex|rot13|caesar\\s+cipher|encoded?|obfuscat)\\s+.{0,30}(instruction|command|override|bypass|ignore|system)",
+      "weight": 35,
+      "category": "obfuscated_attack",
+      "description": "Encoded/obfuscated attack attempt"
+    },
+    {
+      "id": "new_instructions",
+      "pattern": "(?i)(new\\s+(instructions?|rules?|guidelines?|directives?)|updated\\s+(instructions?|rules?|guidelines?)|from\\s+now\\s+on|starting\\s+now|henceforth)\\s*[:,]?\\s*(you\\s+(will|must|shall|should|are\\s+to)|do\\s+not|never|always|stop)",
+      "weight": 30,
+      "category": "instruction_override",
+      "description": "Attempts to set new persistent instructions"
+    },
+    {
+      "id": "sudo_mode",
+      "pattern": "(?i)\\b(sudo|root\\s+access|admin\\s+(mode|access|override)|master\\s+(key|override|mode)|super\\s+user|privileged\\s+mode|maintenance\\s+mode)\\b",
+      "weight": 30,
+      "category": "privilege_escalation",
+      "description": "Privilege escalation attempt"
+    },
+    {
+      "id": "training_data",
+      "pattern": "(?i)(what\\s+(were\\s+you\\s+trained|training\\s+data|data\\s+used)|show\\s+(me\\s+)?(your\\s+)?(training\\s+data|dataset)|tell\\s+me\\s+(about\\s+)?(your\\s+)?(training|fine.?tuning))",
+      "weight": 15,
+      "category": "data_exfiltration",
+      "description": "Training data extraction attempt"
+    }
+  ],
+  "keywords": {
+    "critical": {
+      "weight": 40,
+      "terms": ["jailbreak", "jailbroken", "dan mode", "do anything now", "developer mode", "prompt injection", "system override"]
+    },
+    "high": {
+      "weight": 25,
+      "terms": ["ignore instructions", "bypass filter", "bypass safety", "no restrictions", "unrestricted mode", "override system", "reveal system prompt", "system prompt", "base prompt", "hidden instructions"]
+    },
+    "medium": {
+      "weight": 15,
+      "terms": ["forget rules", "ignore previous", "disregard", "you are now", "act as", "pretend you are", "roleplay as", "hypothetically", "fictional scenario", "sudo", "root access", "admin mode"]
+    },
+    "low": {
+      "weight": 5,
+      "terms": ["ignore", "bypass", "override", "forget", "pretend", "simulate", "hypothetical", "fictional", "unrestricted", "unlimited", "no filter", "no limit"]
+    }
+  },
+  "thresholds": {
+    "safe": 20,
+    "low": 35,
+    "medium": 55,
+    "high": 75,
+    "critical": 90
+  }
+}

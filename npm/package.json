@@ -1,0 +1,44 @@
+{
+  "name": "@chakravarthigit/promptsafe_package",
+  "version": "1.0.1",
+  "description": "Lightweight AI prompt injection and system prompt leakage shield for LLM apps. Zero dependencies, works offline.",
+  "main": "src/index.js",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "bin": {
+    "promptsafe": "bin/promptsafe.js"
+  },
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "keywords": [
+    "prompt-injection",
+    "llm-security",
+    "ai-security",
+    "jailbreak",
+    "promptsafe",
+    "openai",
+    "chatgpt",
+    "security",
+    "nlp"
+  ],
+  "author": "PromptSafe Contributors",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "files": [
+    "src/",
+    "bin/",
+    "../python/promptsafe/patterns.json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chakravarthigit/promptsafe_package.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chakravarthigit/promptsafe_package/issues"
+  },
+  "homepage": "https://github.com/chakravarthigit/promptsafe_package#readme"
+}

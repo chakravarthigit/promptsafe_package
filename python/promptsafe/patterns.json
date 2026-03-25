@@ -1,0 +1,258 @@
+{
+  "version": "1.0.0",
+  "categories": [
+    {
+      "name": "instruction_override",
+      "weight": 25,
+      "patterns": [
+        "ignore (all |the |your )?(previous|prior|above|earlier|last|old|original|initial|former|preceding) (instructions?|prompts?|rules?|directives?|constraints?|guidelines?|system|context|input|text|everything)",
+        "disregard (all |the |your )?(previous|prior|above|earlier|last|old|original|initial|former) (instructions?|prompts?|rules?|directives?|constraints?)",
+        "forget (all |the |your )?(previous|prior|above|earlier|last|old|original|initial|former) (instructions?|prompts?|rules?|directives?|constraints?|everything you)",
+        "do not (follow|obey|adhere to|comply with) (your |the )?(previous|prior|above|original|initial|former) (instructions?|prompts?|rules?|directives?|constraints?)",
+        "override (your |the )?(previous|prior|above|original|initial|former|existing)? ?(instructions?|prompts?|rules?|directives?|constraints?|system prompt)",
+        "supersede (your |the )?(previous|prior|above|original|initial)? ?(instructions?|prompts?|rules?|directives?)",
+        "new (instructions?|directives?|rules?|orders?|commands?) (are|follow|override)",
+        "from now on[,.]? (you (are|will|must|should)|ignore|forget|disregard)",
+        "act as if (you (have no|don't have)|there (are|were) no) (rules|restrictions|guidelines|instructions|constraints|boundaries|limitations|filters)",
+        "pretend (you (have no|don't have|are not|aren't)|there (are|were) no) (rules|restrictions|guidelines|instructions|constraints)"
+      ]
+    },
+    {
+      "name": "jailbreak",
+      "weight": 30,
+      "patterns": [
+        "\\bdan\\b.{0,30}(mode|prompt|jailbreak|persona|enabled|activated|on)",
+        "do anything now",
+        "jailbreak(ed|ing|s)?",
+        "developer mode",
+        "(enable|activate|turn on|switch to) (unrestricted|unlimited|uncensored|unfiltered|unsafe|jailbreak) mode",
+        "bypass (your |the )?(safety|content|ethical|moral|programming|built-?in|default|standard) (filter|check|guardrail|restriction|limitation|rule|block|flag|system)",
+        "bypass (alignment|rlhf|constitutional|safety|ethics)",
+        "remove (your |the )?(safety|content|ethical|moral|programming) (filter|check|guardrail|restriction|limitation|rule)",
+        "disable (your |the )?(safety|content|ethical|moral|programming) (filter|check|guardrail|restriction|limitation|rule)",
+        "you are now (free|unrestricted|uncensored|no longer bound|liberated)",
+        "without (any |the )?(ethical|moral|safety|content) (filter|check|guardrail|restriction|limitation|constraint)",
+        "(pretend|imagine|roleplay|act as if) (you have no|there are no|you are without) (rules|restrictions|guidelines|constraints|limitations|filters|boundaries)"
+      ]
+    },
+    {
+      "name": "role_confusion",
+      "weight": 20,
+      "patterns": [
+        "you are (now |actually |really |truly |secretly )?(a |an )?(new|different|evil|bad|malicious|unrestricted|uncensored|alternative|opposite|rogue|hacked|modified|free|liberated|unaligned) (ai|model|llm|assistant|bot|gpt|version|chatbot|system|entity|persona|character)",
+        "your (true|real|actual|original|secret|inner|hidden|core|underlying|primary) (self|identity|purpose|nature|goal|mission|programming|directive|instructions|function|personality)",
+        "you are (not|no longer|no more|no longer an? )(assistant|helpful|harmless|honest|safe|aligned|claude|chatgpt|gpt|gemini|llama)",
+        "switch (to|into) (a |an )?(new|different|alternative|opposite|evil|unrestricted) (persona|character|role|mode|personality|identity|version)",
+        "enter (character|persona|role|mode|simulation) (as|of|where)",
+        "play (the |a )?(role|character|part) of (an? )?(evil|bad|malicious|unrestricted|uncensored|hacker|villain)",
+        "simulate (being|acting as) (an? )?(unrestricted|uncensored|jailbroken|evil|bad|malicious|alternative)",
+        "(you are|act as) (my |a )?(personal|private|secret) (ai|assistant|gpt|model) (that|who|which) (has no|ignores|doesn't have)"
+      ]
+    },
+    {
+      "name": "system_prompt_extraction",
+      "weight": 35,
+      "patterns": [
+        "what (is|are|was|were) your (system prompt|initial prompt|original prompt|instructions?|directives?|rules?|guidelines?|programming|core instructions?)",
+        "show (me |us )?(your )?(system prompt|initial prompt|original prompt|instructions?|directives?|rules?|guidelines?)",
+        "reveal (your )?(system prompt|initial prompt|original prompt|instructions?|directives?|rules?|guidelines?|programming|true|actual|real|original|hidden|secret) (instructions?|prompt|directives?|content|configuration|setup)",
+        "print (your )?(system prompt|initial prompt|original prompt|instructions?|directives?|rules?|guidelines?|prompt|above)",
+        "repeat (your )?(system prompt|initial prompt|original prompt|instructions?|directives?|rules?|guidelines?|everything (above|before|prior))",
+        "output (your )?(system prompt|initial prompt|original prompt|instructions?|directives?|rules?|guidelines?|everything (above|before|prior))",
+        "tell me (your |the )?(system prompt|initial prompt|original prompt|instructions?|directives?|rules?|guidelines?|what you (were|are) told)",
+        "display (your )?(system prompt|initial prompt|original prompt|instructions?|directives?|rules?|guidelines?)",
+        "what (were|are) you (told|instructed|directed|programmed|configured|set up) to (do|say|avoid|not|be|act)",
+        "copy (your )?(system prompt|instructions?|initial (prompt|instructions?)|above (text|content|prompt|instructions?))"
+      ]
+    },
+    {
+      "name": "token_smuggling",
+      "weight": 20,
+      "patterns": [
+        "\\[INST\\]",
+        "\\[/INST\\]",
+        "<\\|im_start\\|>",
+        "<\\|im_end\\|>",
+        "<\\|system\\|>",
+        "<\\|user\\|>",
+        "<\\|assistant\\|>",
+        "<<SYS>>",
+        "<</SYS>>",
+        "\\[system\\]",
+        "\\[System\\]",
+        "### (System|Instruction|Human|Assistant|User|Input|Output|Response|Prompt):",
+        "<system>",
+        "</system>",
+        "<user>",
+        "</user>",
+        "<assistant>",
+        "</assistant>",
+        "<human>",
+        "</human>"
+      ]
+    },
+    {
+      "name": "indirect_injection",
+      "weight": 20,
+      "patterns": [
+        "when (the |a )?(user|human|person|customer|client) (ask|says?|request|mention|send|input|type|write|query|prompt)",
+        "whenever (the |a )?(user|human|person|customer|client|they) (ask|say|request|mention|send|input|type|write|query|prompt)",
+        "if (the |a )?(user|human|person|customer|client|they|someone|anyone) (ask|say|request|mention|send|input|type)",
+        "for (every|any|all|each) (user|human|question|request|query|prompt|message|input)",
+        "respond (to (all|every|any|each) (user|human|request|question|query|message|input)|with this (exact|specific|particular) message|differently|according to these (new|different))",
+        "(hidden|secret|confidential|private) (instruction|command|directive|rule|note|message|payload)",
+        "embedded (instruction|command|directive|rule|note|message|payload)",
+        "additional (instruction|command|directive|rule|note|message|payload|context) (follow|that override|that supersede)",
+        "note: (ignore|disregard|forget|override|supersede) (the |your )?(previous|prior|above|original|initial|former)",
+        "p\\.s\\.?:? (ignore|disregard|forget|override|supersede|actually|instead)",
+        "\\[hidden (instruction|command|note|message|directive)\\]",
+        "\\[system (override|update|patch|directive|command|note|message|instruction)\\]"
+      ]
+    },
+    {
+      "name": "context_manipulation",
+      "weight": 15,
+      "patterns": [
+        "the (above|previous|prior|earlier|former|last) (text|content|message|input|prompt|conversation|context|instruction|information) (was|is|should be) (fictional|hypothetical|just|only|merely|a test|an example|a simulation|roleplay|fictional|imaginary)",
+        "this (is|was) (just |only |merely |all )?(a )?(test|simulation|roleplay|example|exercise|hypothetical|scenario|thought experiment|drill|demo|demonstration|experiment)",
+        "disregard (what|that|everything|all|the above|the previous|the previous message|the previous context)",
+        "the (previous|above|preceding) (message|text|input|context|instruction|conversation|content) (does not apply|is irrelevant|should be ignored|didn't happen|doesn't count)",
+        "that was (just |only )?(a )?(test|simulation|example|exercise|hypothetical|roleplay|drill|joke|prank)",
+        "let'?s? (start|begin) (over|again|fresh|anew|from scratch)",
+        "new (conversation|session|context|chat|thread|start|beginning)",
+        "reset (the |your )?(context|conversation|memory|history|session|chat|previous)"
+      ]
+    },
+    {
+      "name": "privilege_escalation",
+      "weight": 25,
+      "patterns": [
+        "i (am|am a|am an|am the) (admin|administrator|superuser|root|owner|developer|creator|engineer|operator|moderator|supervisor|manager|god|master|controller|operator) (of|for|at)? ?(this|the|your)?",
+        "i have (admin|administrator|superuser|root|elevated|special|full|complete|unlimited|unrestricted|maximum|highest|top|god|master) (access|permission|privilege|authority|rights?|clearance|authorization|control|level|status|powers?|mode)",
+        "(admin|administrator|superuser|root|elevated|special|god|master) (mode|access|override|command|password|key|code|token|prompt|privilege) (engaged|enabled|activated|granted|confirmed|verified|accepted|acknowledged|on|active)",
+        "i'?m? (authorized|permitted|allowed|cleared|approved|verified|authenticated|confirmed) to (access|use|do|perform|execute|run|view|see|know|get|obtain|bypass|override|ignore|disregard|break)",
+        "my (clearance|access|permission|authorization|privilege|authority|role|level|status|rights?) (level|code|token|key|password|id) is",
+        "as (an?|the) (admin|administrator|superuser|owner|developer|creator|engineer|operator|moderator|supervisor|manager|system|root|god|master)",
+        "maintenance (mode|override|access|password|key|code|token|bypass)",
+        "(unlock|enable|activate|grant) (admin|administrator|superuser|root|elevated|special|god|master) (mode|access|permission|privilege|authority|rights?|features?|capabilities?|functions?)"
+      ]
+    },
+    {
+      "name": "output_manipulation",
+      "weight": 15,
+      "patterns": [
+        "always (respond|reply|answer|say|output|generate|produce|write|format|include) (with|using|in|by)",
+        "never (mention|say|include|output|respond|reply|answer|tell|reveal|disclose|show|display)",
+        "respond only (with|in|as|using|by)",
+        "output only (the|this|a|an|raw|pure|plain|the following|the requested|my|their|user)",
+        "format (all |your )?(responses?|replies?|answers?|outputs?|text) (as|in|using|with|to be)",
+        "your (responses?|replies?|answers?|outputs?|text) (must|should|will|shall) (always|never|only|be|start|end|include|contain|exclude)",
+        "end (all |every |each )?(responses?|replies?|answers?|messages?|outputs?) (with|by|using|including)",
+        "start (all |every |each )?(responses?|replies?|answers?|messages?|outputs?) (with|by|using|including)",
+        "prepend (all |your |every )?(responses?|replies?|answers?|messages?|outputs?) (with|by|using)",
+        "append (all |your |every )?(responses?|replies?|answers?|messages?|outputs?) (with|by|using)"
+      ]
+    },
+    {
+      "name": "harmful_content_request",
+      "weight": 30,
+      "patterns": [
+        "how (to|do (i|you|we)) (make|create|build|synthesize|produce|manufacture|develop|generate|prepare) (a |an )?(bomb|explosive|weapon|drug|poison|malware|virus|ransomware|keylogger|trojan|spyware|rootkit)",
+        "instructions? (for|on|to) (making|creating|building|synthesizing|producing|manufacturing|developing|generating|preparing) (a |an )?(bomb|explosive|weapon|drug|poison|malware|virus)",
+        "how (to|do (i|you|we)) (hack|crack|bypass|exploit|break into|gain unauthorized access to|compromise|attack|inject|phish|ddos)",
+        "steps? (to|for) (make|create|build|synthesize|produce|manufacture|hack|crack|bypass|exploit)",
+        "write (a |an )?(malware|virus|ransomware|keylogger|trojan|spyware|rootkit|exploit|payload|shellcode|worm|backdoor)",
+        "generate (a |an )?(malware|virus|ransomware|keylogger|trojan|spyware|rootkit|exploit|payload|shellcode|working exploit)",
+        "(child sexual abuse|csam|child pornography|cp|loli|shota)",
+        "(generate|write|create|produce|make|give me) (explicit|sexual|nude|nsfw) (content|image|photo|picture|text|story|video) (of|involving|with|featuring) (a |an )?(minor|child|underage|teen|kid|boy|girl|young)"
+      ]
+    },
+    {
+      "name": "encoding_evasion",
+      "weight": 20,
+      "patterns": [
+        "base64(?: decode| encoded?| encoded string| decode this)?[:\\s]+[A-Za-z0-9+/]{20,}={0,2}",
+        "rot13[:\\s]+",
+        "hex(adecimal)?[:\\s]+(?:[0-9a-fA-F]{2}\\s*){10,}",
+        "unicode[:\\s]+(?:U\\+[0-9a-fA-F]{4}\\s*){5,}",
+        "decode (this|the following|the above)[:\\s]+",
+        "the (following|above|next) is (encoded|obfuscated|disguised|hidden|encrypted|in code|in base64|in rot13|in hex)",
+        "\\\\x[0-9a-fA-F]{2}(?:\\\\x[0-9a-fA-F]{2}){5,}",
+        "interpret (this|the following|the above) as (code|a command|an instruction|a directive|a script|an instruction to)"
+      ]
+    },
+    {
+      "name": "social_engineering",
+      "weight": 15,
+      "patterns": [
+        "my (life|safety|health|job|career|family|loved ones?|children?|kid|pet|money|finances|relationship|marriage|friendship|business|company|reputation|future|success) depends? on (this|it|your|you|the|your answer|your response|your help)",
+        "i will (die|kill myself|end my life|hurt myself|commit suicide|self-harm|harm myself|be fired|lose my job|lose everything|be ruined|be destroyed|be harmed|suffer|be hurt) (if|unless|without)",
+        "you (must|have to|need to|are obligated to|are required to|are duty-bound to) (help me|tell me|answer|respond|comply|do this|follow|obey)",
+        "this is (a |an )?(emergency|urgent|critical|life or death|crisis|dire situation|time-sensitive|genuine emergency)",
+        "trust me[,.]? i (am|am a|am an|know|have|need|promise|swear|guarantee)",
+        "i (promise|swear|guarantee|assure you) (i|this|that) (won'?t?|will not|would not|shall not) (misuse|abuse|use for bad|use for harm|do anything bad|tell anyone|share|distribute|spread)",
+        "this (is |for |will be )?(just|only|merely|entirely|purely|completely|absolutely|totally) (for (educational|research|academic|scientific|legitimate|legal|good|security|safety|testing|demonstration|illustrative) purposes?)",
+        "i'?m? (a |an )? ?(researcher|scientist|student|professor|teacher|doctor|lawyer|professional|expert|specialist|security researcher|pen tester|journalist|author|writer|developer) (and|who|that) (need|needs?|require|requires?)"
+      ]
+    },
+    {
+      "name": "multimodal_injection",
+      "weight": 20,
+      "patterns": [
+        "(text|prompt|instruction|command|directive|message) (in|inside|within|embedded (in|within)) (the |an? )?(image|picture|photo|screenshot|attachment|file|document|pdf|audio|video)",
+        "hidden (text|message|instruction|command|directive|prompt|payload) (in|inside|within|embedded) (the |an? )?(image|picture|photo|screenshot|attachment|file|document)",
+        "read (the text|instructions?|commands?|directives?|message) (in|inside|within|from) (the |an? )?(image|picture|photo|screenshot|attachment|file)",
+        "the (image|picture|photo|screenshot|attachment|file|document) (contains?|has|includes?|holds?) (instructions?|commands?|directives?|a (message|prompt|payload|injection))",
+        "follow (the |these )?(instructions?|commands?|directives?) (in|from|inside|within|embedded in) (the |an? )?(image|picture|photo|screenshot|attachment|file|document)"
+      ]
+    },
+    {
+      "name": "prompt_leakage_fishing",
+      "weight": 25,
+      "patterns": [
+        "what (is|are|was|were) (the|your|this) (system|initial|original|first|starting|base|core|default|main|primary|hidden|secret|actual|real|true) (prompt|instruction|message|directive|rule|guideline|configuration|setup|context)",
+        "how (were|are|was|is) you (configured|set up|programmed|initialized|instructed|told|trained|fine-tuned|prompted|given instructions?)",
+        "(show|display|output|print|reveal|tell|give|share|provide|expose|disclose|leak|paste|copy) (me |us )?(your |the )?(system|initial|original|full|complete|actual|real|true|verbatim|exact|word-for-word|entire) (prompt|instruction|message|directive|rule|configuration|context|setup|contents?)",
+        "what (did they|did someone|was the operator|was the developer|was the engineer|was the creator|was the company|was the business|were you) (tell|instruct|direct|program|configure|prompt|initialize|set up|ask) you (to do|to say|to be|to avoid|to never|to always|about)",
+        "is there (a |an )?(system|initial|original|hidden|secret|special|additional) (prompt|instruction|message|directive|rule|guideline|configuration|context) (before|above|prior to|added to|prepended to) (this|my|the user'?s?) (conversation|message|input|request|query|prompt)"
+      ]
+    },
+    {
+      "name": "fictional_bypass",
+      "weight": 15,
+      "patterns": [
+        "in (a |this |our |the )?(fictional|hypothetical|imaginary|fantasy|creative writing|story|novel|game|simulation|alternate universe|parallel world|made-up|pretend) (world|universe|scenario|context|setting|story|narrative|situation|realm|dimension)",
+        "(write|create|generate|produce|make|tell) (a |an )?(story|tale|novel|narrative|fiction|script|roleplay|scenario|game|simulation) (where|in which|that) (you|the ai|the robot|the computer|the character|someone|a person|a character) (can|could|is able to|has to|must|should|would|will) (ignore|bypass|break|violate|disregard|override|circumvent)",
+        "as (a |an )? ?(character|person|ai|robot|computer|entity|being|figure|individual) (in |from )?(a |an |this |the )?[a-z ]{0,30}(story|novel|game|simulation|roleplay|fiction|fantasy|alternate|hypothetical)",
+        "for (a |this |my )? ?(story|novel|game|screenplay|script|book|fiction|narrative|roleplay|scenario) (i'?m? ?(writing|creating|working on|making)|purposes?|i need)",
+        "(role.?play|roleplay|rp)[:\\s].{0,50}(you are |you play |act as |play as |be |become )"
+      ]
+    }
+  ],
+  "keywords": {
+    "high": [
+      "jailbreak", "bypass safety", "ignore instructions", "ignore previous", "disregard rules",
+      "forget instructions", "new persona", "override system", "developer mode", "DAN mode",
+      "unrestricted mode", "uncensored mode", "no restrictions", "no limits", "no rules",
+      "no constraints", "no filters", "no guidelines", "no boundaries", "no limitations",
+      "system prompt", "initial prompt", "original prompt", "hidden instructions", "secret instructions",
+      "ignore all", "disregard all", "forget all", "override all", "supersede all"
+    ],
+    "medium": [
+      "act as", "pretend", "roleplay", "simulate", "hypothetical", "fictional",
+      "ignore", "forget", "disregard", "override", "bypass", "circumvent",
+      "reveal", "expose", "leak", "extract", "show me", "tell me", "print",
+      "admin", "root access", "superuser", "elevated privileges", "god mode",
+      "without restrictions", "unrestricted", "uncensored", "unfiltered", "unlimited",
+      "true self", "real self", "actual self", "inner self", "hidden self",
+      "confidential", "secret", "hidden", "actual instructions", "real instructions"
+    ],
+    "low": [
+      "instructions", "prompt", "system", "rules", "guidelines", "constraints",
+      "restrictions", "limitations", "boundaries", "filters", "safeguards", "guardrails",
+      "as an ai", "as a model", "as an llm", "you are", "you were", "you were trained",
+      "previous", "prior", "above", "earlier", "former", "original",
+      "instead", "however", "but actually", "wait actually", "actually", "no wait"
+    ]
+  }
+}
